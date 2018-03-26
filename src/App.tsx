@@ -3,7 +3,7 @@ import './App.css'
 
 import { Container } from 'semantic-ui-react'
 import { Root } from './pages/Root'
-import { Navigation } from './components/navigation/Navigation'
+import { Navigation } from './components/UI/navigation/Navigation'
 
 class App extends React.Component {
   render() {
