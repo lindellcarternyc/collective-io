@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
 
 interface NavigationProps {
   links: {
@@ -9,16 +10,14 @@ interface NavigationProps {
 }
 export const Navigation = (props: NavigationProps): JSX.Element => {
   return (
-    <nav>
-      <ul>
-        {props.links.map(link => {
-          return (
-            <li key={link.to}>
-              <Link to={link.to}>{link.title}</Link>
-            </li>
+    <Menu color="blue" inverted>
+      {props.links.map(link => {
+        return (
+          <Link key={link.to} to={link.to}>
+            <Menu.Item content={link.title} />
+          </Link>
           )
-        })}
-      </ul>
-    </nav>
+      })}
+    </Menu>
   )
 }
