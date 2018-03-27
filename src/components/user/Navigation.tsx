@@ -38,8 +38,7 @@ const makeLinks = (args: UserNavigationProps = {isAuthenticated: false, isAdmin:
 
 export const UserNavigation = (props: UserNavigationProps): JSX.Element => {
   const links = makeLinks(props)
-
   return (
-    <Navigation links={links}/>
+    <Navigation links={links} logout={props.isAuthenticated} />
   )
 }
