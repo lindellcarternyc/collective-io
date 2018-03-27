@@ -1,24 +1,29 @@
 import * as React from 'react'
 import './App.css'
 
-import { Container } from 'semantic-ui-react'
+import { UserNavigation } from './components/user/Navigation'
 import { Root } from './pages/Root'
-import { Navigation } from './components/UI/navigation/Navigation'
 
-class App extends React.Component {
+interface AppProps { }
+interface AppState {
+  isAuthenticated: boolean
+  isAdmin: boolean
+}
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props)
+
+    this.state = {
+      isAuthenticated: false,
+      isAdmin: false
+    }
+  }
   render() {
+    const { isAuthenticated, isAdmin } = this.state
     return (
       <div className="App">
-        <Navigation 
-          links={[
-            {to: '/', title: 'Home'},
-            {to: '/performances', title: 'Upcoming Performances'},
-            {to: '/add-performance', title: 'Add Performance'}
-          ]}
-        />
-        <Container>
-          <Root />
-        </Container>
+        <UserNavigation isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+        <Root />
       </div>
     )
   }
