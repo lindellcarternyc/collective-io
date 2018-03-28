@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './App.css'
 
-import { UserNavigation } from './components/user/Navigation'
+import { UserNavigation } from './components/user/navigation/Navigation'
 import { Main } from './pages/Main'
 
 class App extends React.Component {
