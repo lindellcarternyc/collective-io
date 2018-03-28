@@ -4,7 +4,9 @@ import { Switch, Route } from 'react-router-dom'
 import { HomePage } from './HomePage'
 import { SignUpPage } from './user/SignUpPage'
 import { SignInPage } from './user/SignInPage'
-import { PerformancesRoutes } from './auth/performances'
+
+import { AuthenticatedRoute } from '../components/routes/AuthenticatedRoute'
+import { PerformancesRouteComponent } from './performances/performances-routes'
 
 export const Main = ( ): JSX.Element => {
   return (
@@ -12,7 +14,7 @@ export const Main = ( ): JSX.Element => {
       <Route exact path="/" component={HomePage} />
       <Route path="/signup" component={SignUpPage} />
       <Route path="/signin" component={SignInPage} />
-      <Route path="/performances" component={PerformancesRoutes} />
+      <AuthenticatedRoute path="/performances" component={PerformancesRouteComponent} />
     </Switch>
   )
 }
