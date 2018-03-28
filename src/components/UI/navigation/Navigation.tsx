@@ -5,7 +5,7 @@ import { Menu } from 'semantic-ui-react'
 interface NavigationProps {
   links: {
     title: string
-    to: string
+    path: string
   }[]
   isAuthenticated: boolean
   signOut: () => void
@@ -15,7 +15,7 @@ export const Navigation = (props: NavigationProps): JSX.Element => {
     <Menu color="blue" inverted>
       {props.links.map(link => {
         return (
-          <Link key={link.to} to={link.to}>
+          <Link key={link.path} to={link.path}>
             <Menu.Item content={link.title} />
           </Link>
           )
