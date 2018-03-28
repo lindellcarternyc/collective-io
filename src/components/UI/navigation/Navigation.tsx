@@ -7,7 +7,8 @@ interface NavigationProps {
     title: string
     to: string
   }[]
-  logout: boolean
+  isAuthenticated: boolean
+  signOut: () => void
 }
 export const Navigation = (props: NavigationProps): JSX.Element => {
   return (
@@ -19,9 +20,9 @@ export const Navigation = (props: NavigationProps): JSX.Element => {
           </Link>
           )
       })}
-      {props.logout === true &&
+      {props.isAuthenticated === true &&
         <Menu.Menu position="right">
-          <Menu.Item content="Sign Out" />
+          <Menu.Item content="Sign Out" onClick={props.signOut}/>
         </Menu.Menu>
       }
     </Menu>
