@@ -2,7 +2,9 @@ import * as React from 'react'
 
 import { Form } from 'semantic-ui-react'
 
-interface SignInFormProps { }
+interface SignInFormProps { 
+  signIn: (email: string, password: string) => void
+}
 interface SignInFormState { 
   email: string
   password: string
@@ -50,7 +52,8 @@ export class SignInForm extends React.Component<SignInFormProps, SignInFormState
     evt.stopPropagation()
 
     if (this.isValid) {
-      console.dir(this.state)
+      const { email, password } = this.state
+      this.props.signIn(email, password)
     }
   }
 
