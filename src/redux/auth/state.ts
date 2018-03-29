@@ -1,6 +1,7 @@
-// import { User, AuthError } from './constants'
 import { User } from '../../constants/user'
 import { AuthError } from './constants'
+
+import { getUserById } from '../../data/user-databse'
 
 export interface AuthState {
   isLoading: boolean
@@ -10,6 +11,6 @@ export interface AuthState {
 
 export const InitialAuthState: AuthState = {
   isLoading: false,
-  user: null,
+  user: getUserById('l'),
   error: null
 }

@@ -1,6 +1,6 @@
 import { PerformanceDetailsObject } from '../constants/performance-details-type'
 
-const MOCK_PERFORMANCE_LIST_DATA: PerformanceDetailsObject[] = [
+let MOCK_PERFORMANCE_LIST_DATA: PerformanceDetailsObject[] = [
   {
     id: 'a',
     date: 'Monday 3/26',
@@ -67,4 +67,10 @@ export const getPerformanceById = (id: string): PerformanceDetailsObject | undef
     return filtered[0]
   } 
   return
+}
+
+export const joinCast = (performanceId: string, userId: string) => {
+  console.dir('joinCast')
+  const performance = getPerformanceById[performanceId]
+  console.dir(performance)
 }

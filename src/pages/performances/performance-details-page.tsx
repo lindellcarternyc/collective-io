@@ -1,8 +1,15 @@
 import * as React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-import { getPerformanceById } from '../../data/upcoming-performances'
+import { connect } from 'react-redux'
+import { StoreState } from '../../redux/state'
+
+import { 
+  getPerformanceById,
+  joinCast
+} from '../../data/upcoming-performances'
 import { getUserById } from '../../data/user-databse'
+import { User } from '../../constants/user'
 
 import { Layout } from '../../components/Layout'
 import { PerformanceDetails } from '../../components/performance/Details'
@@ -10,10 +17,19 @@ import { PerformanceDetails } from '../../components/performance/Details'
 interface RouteProps {
   id: string
 }
+interface PerformanceDetailsComponentProps extends RouteComponentProps<RouteProps> {
+  user: User | null
+}
 
-const PerformanceDetailsComponent = (props: RouteComponentProps<RouteProps>) => {
+const PerformanceDetailsComponent = (props: PerformanceDetailsComponentProps) => {
   const id = props.match.params.id
   const details = getPerformanceById(id)
+
+  const handleJoin = (mode: 'cast' | 'covers') => {
+    if (props.user) {
+      joinCast(id, props.user.id)
+    }
+  }
 
   let content: React.ReactNode
   if (details === undefined) {
@@ -27,16 +43,19 @@ const PerformanceDetailsComponent = (props: RouteComponentProps<RouteProps>) => 
       covers = covers.map(coverId => getUserById(coverId).fullname)
     }
     content = (
-      <PerformanceDetails 
-        preview={{
-          date: details.date,
-          startTime: details.startTime,
-          endTime: details.endTime,
-          location: details.location
-        }}
-        castList={cast}
-        coverList={covers}
-      />
+      <>
+        <PerformanceDetails 
+          preview={{
+            date: details.date,
+            startTime: details.startTime,
+            endTime: details.endTime,
+            location: details.location
+          }}
+          castList={cast}
+          coverList={covers}
+          handleJoin={handleJoin}
+        />
+      </>
     )
   }
 
@@ -47,4 +66,16 @@ const PerformanceDetailsComponent = (props: RouteComponentProps<RouteProps>) => 
   )
 }
 
-export const PerformanceDetailsPage = withRouter(PerformanceDetailsComponent)
+interface StateProps {
+  user: User | null
+}
+const mapStateToProps = (state: StoreState): StateProps => {
+  return {
+    user: state.auth.user
+  }
+}
+export const PerformanceDetailsPage = withRouter(
+  connect(
+    mapStateToProps
+  )(PerformanceDetailsComponent)
+)
