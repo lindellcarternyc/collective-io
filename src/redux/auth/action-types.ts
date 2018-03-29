@@ -1,4 +1,4 @@
-import { UserType } from '../../constants/user'
+import { User } from '../../constants/user'
 import { AuthError } from './constants'
 
 export const SIGN_IN_START_TYPE = 'SIGN_IN_START_TYPE'
@@ -11,7 +11,7 @@ export const SIGN_IN_SUCCESS_TYPE = 'SIGN_IN_SUCCESS_TYPE'
 export type SIGN_IN_SUCCESS_TYPE = typeof SIGN_IN_SUCCESS_TYPE
 export interface SignInSuccessAction {
   type: SIGN_IN_SUCCESS_TYPE,
-  payload: UserType
+  payload: User
 }
 
 export const SIGN_IN_FAILURE_TYPE = 'SIGN_IN_FAILURE_TYPE'

@@ -1,10 +1,10 @@
 // import { User, AuthError } from './constants'
-import { UserType } from '../../constants/user'
+import { User } from '../../constants/user'
 import { AuthError } from './constants'
 
 export interface AuthState {
   isLoading: boolean
-  user: UserType | null
+  user: User | null
   error: AuthError | null
 }
 

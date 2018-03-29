@@ -7,7 +7,7 @@ import {
   SIGN_OUT_TYPE, SignOutAction,
   SIGN_IN_FAILURE_TYPE, SignInFailureAction
 } from './action-types'
-import { UserType } from '../../constants/user'
+import { User } from '../../constants/user'
 import { AuthError, EmailError, PasswordError } from './constants'
 
 export const signInStart = ():  SignInStartAction => {
@@ -16,7 +16,7 @@ export const signInStart = ():  SignInStartAction => {
   }
 }
 
-export const signInSuccess = (user: UserType): SignInSuccessAction => {
+export const signInSuccess = (user: User): SignInSuccessAction => {
   return {
     type: SIGN_IN_SUCCESS_TYPE,
     payload: user
