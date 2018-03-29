@@ -1,14 +1,14 @@
 import * as React from 'react'
 import './App.css'
 
-import { UserNavigation } from './components/user/navigation/Navigation'
+import { Navigation } from './components/navigation'
 import { Main } from './pages/Main'
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <UserNavigation />
+        <Navigation />
         <Main />
       </div>
     )
