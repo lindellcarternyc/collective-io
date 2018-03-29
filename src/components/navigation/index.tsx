@@ -7,13 +7,14 @@ import { StoreState } from '../../redux/state'
 import { signOut } from '../../redux/auth/actions'
 
 import { NavigationComponent } from './NavigationComponent'
+import { User } from '../../constants/user'
 
 interface StateProps {
-  isAuthenticated: boolean
+  user: User | null
 }
 const mapStateToProps = (state: StoreState): StateProps => {
   return {
-    isAuthenticated: state.auth.user !== null
+    user: state.auth.user
   }
 }
 
@@ -36,7 +37,7 @@ export const Navigation = withRouter(
   )((props: NavigationProps) => {
     return (
       <NavigationComponent 
-        isAuthenticated={props.isAuthenticated}
+        user={props.user}
         signOut={() => {
           props.signOut()
           props.history.push('/')
