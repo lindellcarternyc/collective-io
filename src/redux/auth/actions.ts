@@ -8,7 +8,7 @@ import {
   SIGN_IN_FAILURE_TYPE, SignInFailureAction
 } from './action-types'
 import { UserType } from '../../constants/user'
-import { AuthError } from './constants'
+import { AuthError, EmailError, PasswordError } from './constants'
 
 export const signInStart = ():  SignInStartAction => {
   return {
@@ -30,20 +30,21 @@ export const signInFailure = (error: AuthError): SignInFailureAction => {
   }
 }
 
-import { getUserWithEmailAndPassword } from '../../data/users'
+import { getUserByEmail } from '../../data/user-databse'
 export const signIn = (email: string, password: string) => {
   return function(dispatch: Dispatch<StoreState>) {
     dispatch(signInStart())
 
     // Try to get user
-    getUserWithEmailAndPassword(email, password)
-      // Success
-      .then(user => {
+    getUserByEmail(email).then(user => {
+      if (user.password === password) {
         dispatch(signInSuccess(user))
-      }).catch(err => {
-        // Failure
-        dispatch(signInFailure(err))
-      })
+      } else {
+        dispatch(signInFailure(PasswordError))
+      }
+    }).catch(err => {
+      dispatch(signInFailure(EmailError))
+    })
   }
 }
 
