@@ -1,20 +1,27 @@
 import * as React from 'react'
 
-import { ListItem, List } from 'semantic-ui-react'
-import { PerformanceDetailsType } from '../../constants/performance-details-type'
-interface PerformanceDetailsProps extends PerformanceDetailsType {
-  as?: 'List'
+import { PerformancePreviewType } from '../../constants/performance'
+import { PerformancePreview } from './Preview'
+import { SingerList } from '../Singer/List/List'
+
+interface PerformanceDetailsProps {
+  preview: PerformancePreviewType
+  castList?: string[]
+  coverList?: string[]
 }
 export const PerformanceDetails = (props: PerformanceDetailsProps): JSX.Element => {
-  const { date, startTime, endTime, location } = props
-  const Wrapper = props.as === 'List'
-    ? List
-    : React.Fragment
+  const { preview, castList, coverList } = props
   return (
-    <Wrapper>
-      <ListItem icon="calendar" content={date} />
-      <ListItem icon="time" content={`${startTime} - ${endTime}`} />
-      <ListItem icon="point" content={location} />
-    </Wrapper>
+    <>
+      <PerformancePreview 
+        date={preview.date}
+        startTime={preview.startTime}
+        endTime={preview.endTime}
+        location={preview.location}
+        as="List"
+      />
+      {castList !== undefined && <SingerList singerNames={castList}/>}
+      {coverList !== undefined && <SingerList singerNames={coverList} />}
+    </>
   )
 }
