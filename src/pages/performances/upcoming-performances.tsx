@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Layout } from '../../components/UI/Layout'
+import { Layout } from '../../components/Layout'
 import { PerformanceList } from '../../components/Performance/List/List'
 import { getUpcomingPerformances } from '../../data/upcoming-performances'
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import { getPerformanceById } from '../../data/upcoming-performances'
-import { Layout } from '../../components/UI/Layout'
+import { Layout } from '../../components/Layout'
 import { PerformanceDetails } from '../../components/Performance/Details'
 import { SingerList } from '../../components/Singer/List/List'
 

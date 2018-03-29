@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 import { StoreState } from '../../redux/state'
 import { signIn } from '../../redux/auth/actions'
 
-import { Layout } from '../../components/UI/Layout'
+import { Layout } from '../../components/Layout'
 import { SignInForm } from '../../components/user/SignInForm'
 
 import { UserType } from '../../constants/user'
