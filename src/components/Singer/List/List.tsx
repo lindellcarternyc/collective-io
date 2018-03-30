@@ -3,7 +3,7 @@ import * as React from 'react'
 import { List, ListItem, Header } from 'semantic-ui-react'
 
 interface SingerListProps {
-  listName?: string
+  listName: string
   singerNames: string[]
 }
 export const SingerList = (props: SingerListProps): JSX.Element => {
