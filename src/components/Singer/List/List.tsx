@@ -3,19 +3,20 @@ import * as React from 'react'
 import { List, ListItem, Header } from 'semantic-ui-react'
 
 interface SingerListProps {
-  listName: string
-  singerNames: string[]
+  name: string
+  singers: {
+    id: string
+    name: string
+  }[]
 }
 export const SingerList = (props: SingerListProps): JSX.Element => {
   return (
     <>
-      {props.listName !== undefined && 
-        <Header as="h3" content={props.listName} />
-      }
+      <Header as="h3" content={props.name} />
       <List bulleted>
-        {props.singerNames.map(name => {
+        {props.singers.map(singer => {
           return (
-            <ListItem key={name} content={name} />
+            <ListItem key={singer.id} content={singer.name} />
           )
         })}
       </List>

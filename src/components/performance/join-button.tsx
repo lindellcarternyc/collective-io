@@ -4,6 +4,7 @@ import { Button } from 'semantic-ui-react'
 
 interface JoinButtonProps {
   mode: 'cast' | 'covers'
+  disabled?: boolean
   join: (mode: 'cast' | 'covers') => void
 }
 export const JoinButton = (props: JoinButtonProps): JSX.Element => {
@@ -12,7 +13,8 @@ export const JoinButton = (props: JoinButtonProps): JSX.Element => {
   : 'Join Covers'
 
   return (
-    <Button 
+    <Button
+      disabled={props.disabled}
       color="blue"
       content={content}
       onClick={ () => {

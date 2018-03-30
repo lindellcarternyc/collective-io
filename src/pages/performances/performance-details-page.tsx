@@ -4,6 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { StoreState } from '../../redux/state'
 import { Dispatch } from 'redux'
+
 import { joinCast, joinCovers } from '../../redux/performances/actions'
 
 import { getUserById } from '../../data/user-databse'
@@ -23,15 +24,19 @@ interface PerformanceDetailsComponentProps extends RouteComponentProps<RouteProp
   joinCovers: (performanceId: string, userId: string) => void
 }
 
-const mapUserIdsToFullNames = (userIds: string[]): string[] => {
-  return userIds.map(id => getUserById(id).fullname)
+const mapUserIdsToSingers = (userIds: string[]): { id: string, name: string}[] => {
+  return userIds.map(id => {
+    return {
+      id,
+      name: getUserById(id).fullname
+    }
+  })
 }
 
 const PerformanceDetailsComponent = (props: PerformanceDetailsComponentProps) => {
   const id = props.match.params.id
   const performance = props.performance
 
-  // TODO: Add action for joining cast or covers...
   const handleJoin = (mode: 'cast' | 'covers') => {
     if (props.user !== null) {
       const userId = props.user.id
@@ -52,8 +57,9 @@ const PerformanceDetailsComponent = (props: PerformanceDetailsComponentProps) =>
           endTime: performance.endTime,
           location: performance.location
         }}
-        castList={mapUserIdsToFullNames(performance.cast)}
-        coverList={mapUserIdsToFullNames(performance.covers)}
+        user={props.user}
+        castList={mapUserIdsToSingers(performance.cast)}
+        coverList={mapUserIdsToSingers(performance.covers)}
         handleJoin={handleJoin}
       />
     </Layout>
