@@ -10,12 +10,9 @@ interface NavigationLinkProps {
 export const NavigationLink = (props: NavigationLinkProps): JSX.Element => {
   const { path, title } = props
   return (
-    // <Link to={path}>
-    //   <MenuItem content={title} />
-    // </Link>
-    <MenuItem onClick={() => { return }}>
-      <Link to={path}>{title}</Link>
-    </MenuItem>
+    <Link to={path}>
+      <MenuItem content={title} />
+    </Link>
   )
 }
 
