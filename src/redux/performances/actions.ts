@@ -1,6 +1,7 @@
 import { 
   JOIN_CAST_TYPE, JoinCastAction,
-  JOIN_COVERS_TYPE, JoinCoversAction
+  JOIN_COVERS_TYPE, JoinCoversAction,
+  JoinPerformanceAction
 } from './action-types'
 
 export const joinCast = (performanceId: string, userId: string): JoinCastAction => {
@@ -21,4 +22,12 @@ export const joinCovers = (performanceId: string, userId: string): JoinCoversAct
       userId
     }
   }
+}
+
+export const joinPerformance = (
+  performanceId: string, userId: string, mode: 'cast' | 'covers'
+): JoinPerformanceAction => {
+  return mode === 'cast'
+  ? joinCast(performanceId, userId)
+  : joinCovers(performanceId, userId)
 }

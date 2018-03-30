@@ -1,7 +1,10 @@
 import * as React from 'react'
 
+// Types
 import { PerformancePreviewType } from '../../constants/performance'
 import { User } from '../../constants/user'
+
+// Components
 import { PerformancePreview } from './Preview'
 import { SingerList } from '../Singer/List/List'
 import { JoinButton } from './join-button'
