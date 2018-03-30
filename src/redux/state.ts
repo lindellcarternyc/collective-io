@@ -1,5 +1,7 @@
 import { AuthState } from './auth/state'
+import { PerformanceState } from './performances/state'
 
 export interface StoreState { 
-  auth: AuthState
+  auth: AuthState,
+  performances: PerformanceState
 }
