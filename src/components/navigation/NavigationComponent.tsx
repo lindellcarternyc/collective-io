@@ -3,8 +3,8 @@ import * as React from 'react'
 import { Menu } from 'semantic-ui-react'
 
 import { NavigationLinks } from './Link'
-import { UserButton } from './User'
-import { SignOutButton } from './SignOut'
+import { UserButton } from './UserButton'
+import { SignOutButton } from './SignOutButton'
 
 import { makeLinks } from './utils'
 import { User } from '../../constants/user'
