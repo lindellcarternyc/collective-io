@@ -10,7 +10,7 @@ interface RouteProps {
 import { connect } from 'react-redux'
 import { StoreState } from '../../redux/state'
 import { Dispatch } from 'redux'
-import { joinPerformance } from '../../redux/performances/actions'
+import { joinPerformance, leavePerformance } from '../../redux/performances/actions'
 interface StateProps {
   user: User | null
   performance: PerformanceType
@@ -24,6 +24,7 @@ const mapStateToProps = (state: StoreState, ownProps: PerformanceDetailsComponen
 }
 interface DispatchProps {
   joinPerformance: (performanceId: string, userId: string, mode: 'cast' | 'covers') => void
+  leavePerformance: (performanceId: string, userId: string, mode: 'cast' | 'covers') => void
 }
 const mapDispatchToProps = (
   dispatch: Dispatch<StoreState>, 
@@ -34,6 +35,11 @@ const mapDispatchToProps = (
       performanceId: string, userId: string, mode: 'cast' | 'covers'
     ) => {
       dispatch(joinPerformance(performanceId, userId, mode))
+    },
+    leavePerformance: (
+      performanceId: string, userId: string, mode: 'cast' | 'covers'
+    ) => {
+      dispatch(leavePerformance(performanceId, userId, mode))
     }
   }
 }
@@ -61,8 +67,14 @@ const PerformanceDetailsComponent = (props: PerformanceDetailsComponentProps) =>
       props.joinPerformance(id, props.user.id, mode)
     }
   }
-  const castList = mapUserIdsToSingerObjects(performance.cast)
-  const coverList = mapUserIdsToSingerObjects(performance.covers)
+
+  const handleLeave = (mode: 'cast' | 'covers') => {
+    return (userId: string) => {
+      props.leavePerformance(id, userId, mode)
+    }
+  }
+  const castList = mapUserIdsToSingerObjects(performance.cast, props.user, handleLeave('cast'))
+  const coverList = mapUserIdsToSingerObjects(performance.covers, props.user, handleLeave('covers'))
   return (
     <Layout title="Details">
       <PerformanceDetails 
