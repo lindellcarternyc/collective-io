@@ -1,18 +1,41 @@
 import { NavigationLinkType } from './constants'
 
-export const makeLinks = (isAuthenticated: boolean): NavigationLinkType[] => {
+const adminLinks = (): NavigationLinkType[] => {
+  return [
+    {path: '/add-performance', title: 'Add Performance'}
+  ]
+}
+
+const authenticatedLinks = (): NavigationLinkType[] => {
+  return [
+    {path: '/performances', title: 'Upcoming Performances'}
+  ]
+}
+
+const unauthenticatedLinks = (): NavigationLinkType[] => {
+  return [
+    {path: '/signin', title: 'Sign In'},
+    {path: '/signup', title: 'Sign Up'}
+  ]
+}
+
+export const makeLinks = (isAuthenticated: boolean, isAdmin: boolean = false): NavigationLinkType[] => {
   let links: NavigationLinkType[] = [
     {path: '/', title: 'Home'}
   ]
 
   if (isAuthenticated) {
     links.push(
-      {path: '/performances', title: 'Upcoming Performances'}
+      ...authenticatedLinks()
     )
+    if (isAdmin) {
+      links.push(
+        ...adminLinks()
+      )
+    }
   } else {
     links.push(
-      {path: '/signin', title: 'Sign In'},
-      {path: '/signup', title: 'Sign Up'}
+      ...unauthenticatedLinks()
     )
   }
 

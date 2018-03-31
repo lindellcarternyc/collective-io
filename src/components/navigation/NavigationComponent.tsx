@@ -14,7 +14,9 @@ interface NavigationProps {
   signOut: () => void
 }
 export const NavigationComponent = (props: NavigationProps): JSX.Element => {
-  const links = makeLinks(props.user !== null)
+  const isAuthenticated = props.user !== null 
+  const isAdmin = props.user !== null && props.user.isAdmin === true
+  const links = makeLinks(isAuthenticated, isAdmin)
   return (
     <Menu color="blue" inverted>
       <NavigationLinks links={links} />
