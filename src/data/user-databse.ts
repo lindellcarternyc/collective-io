@@ -59,7 +59,8 @@ let UserDatabse: { [id: string]: User } = {
   'l': new User({
     id: 'l',
     firstName: 'Lindell', lastName: 'Carter',
-    email: 'lindell.email', password: 'password'
+    email: 'lindell.email', password: 'password',
+    isAdmin: true
   }),
   'm': new User({
     id: 'm',
