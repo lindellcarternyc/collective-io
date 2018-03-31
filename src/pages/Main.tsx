@@ -7,6 +7,7 @@ import { SignInPage } from './user/SignInPage'
 
 import { AuthenticatedRoute } from '../components/routes/AuthenticatedRoute'
 import { PerformancesRouteComponent } from './performances/performances-routes'
+import { AddPerformancePage } from './performances/add-performance-page'
 
 export const Main = ( ): JSX.Element => {
   return (
@@ -15,6 +16,7 @@ export const Main = ( ): JSX.Element => {
       <Route path="/signup" component={SignUpPage} />
       <Route path="/signin" component={SignInPage} />
       <AuthenticatedRoute path="/performances" component={PerformancesRouteComponent} />
+      <AuthenticatedRoute path="/add-performance" component={AddPerformancePage} />
     </Switch>
   )
 }
