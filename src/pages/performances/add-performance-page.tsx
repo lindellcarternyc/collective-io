@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Layout } from '../../components/Layout'
-import { AddPerformanceForm, AddPerformanceFormData } from '../../components/add-performance'
+import { AddPerformanceForm, AddPerformanceFormData } from '../../components/add-performance/form'
 
 export const AddPerformancePage = (): JSX.Element => {
   const addPerformance = (data: AddPerformanceFormData) => {

@@ -3,6 +3,7 @@ import * as React from 'react'
 import * as moment from 'moment'
 
 import { Form, InputOnChangeData } from 'semantic-ui-react'
+import { LocationDropdown } from './dropdown'
 
 export interface AddPerformanceFormData {
   date: string
@@ -14,15 +15,25 @@ interface AddPerformanceFormProps {
   addPerformance: (data: AddPerformanceFormData) => void
 }
 interface AddPerformanceFormState extends AddPerformanceFormData { }
+const InitialFormState: AddPerformanceFormState = {
+  date: moment().format('YYYY-MM-DD'),
+  startTime: '18:00',
+  endTime: '21:00',
+  location: ''
+}
 export class AddPerformanceForm extends React.Component<AddPerformanceFormProps, AddPerformanceFormState> {
+  readonly initialFormState: AddPerformanceFormState = {
+    date: moment().format('YYYY-MM-DD'),
+    startTime: '18:00',
+    endTime: '21:00',
+    location: ''
+  }
+  
   constructor(props: AddPerformanceFormProps) {
     super(props)
 
     this.state = {
-      date: '',
-      startTime: '18:00',
-      endTime: '21:00',
-      location: ''
+      ...this.initialFormState
     }
   }
 
@@ -42,6 +53,13 @@ export class AddPerformanceForm extends React.Component<AddPerformanceFormProps,
     }
   }
 
+  resetForm = (evt: React.SyntheticEvent<HTMLButtonElement>) => {
+    evt.preventDefault()
+    evt.stopPropagation()
+
+    this.setState({ ...InitialFormState })
+  }
+
   get isValid(): boolean {
     const { date, location, startTime, endTime } = this.state
     return date !== '' && location !== '' && startTime !== '' && endTime !== ''
@@ -56,8 +74,9 @@ export class AddPerformanceForm extends React.Component<AddPerformanceFormProps,
   updateEndTime(endTime: string) {
     this.setState({ endTime })
   }
-  updateLocation(location: string) {
-    this.setState({ location })
+  updateLocation = (location: string) => {
+    const endTime = this._getEndTimeForLocation(location)
+    this.setState({ location, endTime })
   }
 
   handleSubmit = (evt: React.SyntheticEvent<HTMLFormElement | HTMLButtonElement>) => {
@@ -83,13 +102,10 @@ export class AddPerformanceForm extends React.Component<AddPerformanceFormProps,
           label="Date"
           onChange={this.handleChange}
           value={this.state.date}
-          min="2018-03-31"
+          min={this.initialFormState.date}
         />
-        <Form.Input 
-          type="text"
-          name="location"
-          label="Location"
-          onChange={this.handleChange}
+        <LocationDropdown 
+          handleChange={this.updateLocation}
           value={this.state.location}
         />
         <Form.Group widths="equal">
@@ -99,6 +115,7 @@ export class AddPerformanceForm extends React.Component<AddPerformanceFormProps,
             label="Start time"
             onChange={this.handleChange}
             value={this.state.startTime}
+            readOnly
           />
           <Form.Input 
             type="time"
@@ -106,6 +123,7 @@ export class AddPerformanceForm extends React.Component<AddPerformanceFormProps,
             label="End time"
             onChange={this.handleChange}
             value={this.state.endTime}
+            readOnly
           />
         </Form.Group>
         <Form.Group>
@@ -116,7 +134,7 @@ export class AddPerformanceForm extends React.Component<AddPerformanceFormProps,
           >
             Add Performance
           </Form.Button>
-          <Form.Button basic color="blue">
+          <Form.Button basic color="blue" onClick={this.resetForm}>
             Reset
           </Form.Button>
         </Form.Group>
@@ -135,5 +153,11 @@ export class AddPerformanceForm extends React.Component<AddPerformanceFormProps,
 
   private _formateDate(date: string): string {
     return moment(date).format('dddd, M/D')
+  }
+
+  private _getEndTimeForLocation(location: string): string {
+    return location === 'Times Square'
+      ? '22:00'
+      : '21:00'
   }
 }
