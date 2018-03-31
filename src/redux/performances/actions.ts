@@ -1,10 +1,13 @@
 import { 
   JOIN_CAST_TYPE, JoinCastAction,
   JOIN_COVERS_TYPE, JoinCoversAction,
-  JoinPerformanceAction
+  JoinPerformanceAction,
+  LEAVE_CAST_TYPE, LeaveCastAction,
+  LEAVE_COVERS_TYPE, LeaveCoversAction,
+  LeavePorformanceAction
 } from './action-types'
 
-export const joinCast = (performanceId: string, userId: string): JoinCastAction => {
+const joinCast = (performanceId: string, userId: string): JoinCastAction => {
   return {
     type: JOIN_CAST_TYPE,
     payload: {
@@ -14,7 +17,7 @@ export const joinCast = (performanceId: string, userId: string): JoinCastAction 
   }
 }
 
-export const joinCovers = (performanceId: string, userId: string): JoinCoversAction => {
+const joinCovers = (performanceId: string, userId: string): JoinCoversAction => {
   return {
     type: JOIN_COVERS_TYPE,
     payload: {
@@ -30,4 +33,32 @@ export const joinPerformance = (
   return mode === 'cast'
   ? joinCast(performanceId, userId)
   : joinCovers(performanceId, userId)
+}
+
+const leaveCast = (performanceId: string, userId: string): LeaveCastAction => {
+  return {
+    type: LEAVE_CAST_TYPE,
+    payload: {
+      performanceId,
+      userId
+    }
+  }
+}
+const leaveCovers = (performanceId: string, userId: string): LeaveCoversAction => {
+  return {
+    type: LEAVE_COVERS_TYPE,
+    payload: {
+      performanceId,
+      userId
+    }
+  }
+}
+export const leavePerformance = (
+  performanceId: string, userId: string, mode: 'cast' | 'covers'
+): LeavePorformanceAction => {
+  if ( mode === 'cast') {
+    return leaveCast(performanceId, userId)
+  } else {
+    return leaveCovers(performanceId, userId)
+  }
 }
