@@ -1,12 +1,14 @@
 import * as React from 'react'
 
-import { List, ListItem, Header } from 'semantic-ui-react'
+import { List, Header } from 'semantic-ui-react'
+import { SingerListItem } from './SingerListItem'
 
 interface SingerListProps {
   name: string
   singers: {
     id: string
     name: string
+    action?: () => void
   }[]
 }
 export const SingerList = (props: SingerListProps): JSX.Element => {
@@ -16,7 +18,7 @@ export const SingerList = (props: SingerListProps): JSX.Element => {
       <List bulleted>
         {props.singers.map(singer => {
           return (
-            <ListItem key={singer.id} content={singer.name} />
+            <SingerListItem key={singer.id} {...singer} />
           )
         })}
       </List>
