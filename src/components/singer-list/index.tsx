@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { List, Header } from 'semantic-ui-react'
-import { SingerListItem } from './SingerListItem'
+import { SingerListItem } from './singer-list-item'
 
 interface SingerListProps {
   name: string

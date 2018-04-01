@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { List } from 'semantic-ui-react'
 
-import { PerformancePreview } from './Preview'
+import { PerformancePreview } from './preview'
 
 interface PerformancePreviewListProps {
   items: {

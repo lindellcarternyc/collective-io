@@ -5,8 +5,8 @@ import { PerformancePreviewType } from '../../constants/performance'
 import { User } from '../../constants/user'
 
 // Components
-import { PerformancePreview } from './Preview'
-import { SingerList } from '../Singer/List/List'
+import { PerformancePreview } from './preview'
+import { SingerList } from '../singer-list'
 import { JoinButton } from './join-button'
 
 interface PerformanceDetailsProps {
