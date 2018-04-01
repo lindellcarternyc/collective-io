@@ -4,7 +4,9 @@ import {
   JoinPerformanceAction,
   LEAVE_CAST_TYPE, LeaveCastAction,
   LEAVE_COVERS_TYPE, LeaveCoversAction,
-  LeavePorformanceAction
+  LeavePorformanceAction,
+  ADD_PERFORMANCE_TYPE,
+  AddPerformanceAction
 } from './action-types'
 
 const joinCast = (performanceId: string, userId: string): JoinCastAction => {
@@ -60,5 +62,18 @@ export const leavePerformance = (
     return leaveCast(performanceId, userId)
   } else {
     return leaveCovers(performanceId, userId)
+  }
+}
+
+export const addPerformance = 
+(date: string, location: string, startTime: string, endTime: string): AddPerformanceAction => {
+  return {
+    type: ADD_PERFORMANCE_TYPE,
+    payload: {
+      date,
+      location,
+      startTime,
+      endTime
+    }
   }
 }

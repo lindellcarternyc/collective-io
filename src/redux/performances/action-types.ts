@@ -35,4 +35,16 @@ export interface LeaveCoversAction {
 
 export type LeavePorformanceAction = LeaveCastAction | LeaveCoversAction
 
-export type PerformanceAction = JoinPerformanceAction | LeavePorformanceAction
+export const ADD_PERFORMANCE_TYPE = 'ADD_PERFORMANCE_TYPE'
+export type ADD_PERFORMANCE_TYPE = typeof ADD_PERFORMANCE_TYPE
+export interface AddPerformanceAction {
+  type: ADD_PERFORMANCE_TYPE,
+  payload: {
+    date: string
+    startTime: string
+    endTime: string
+    location: string
+  }
+}
+
+export type PerformanceAction = JoinPerformanceAction | LeavePorformanceAction | AddPerformanceAction
