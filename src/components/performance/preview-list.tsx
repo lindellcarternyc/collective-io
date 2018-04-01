@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import { List } from 'semantic-ui-react'
 
 import { PerformancePreview } from './preview'
+import { ViewPreviewButton } from './view-preview-button'
 
-interface PerformancePreviewListProps {
+interface PerformancePreviewListProps extends RouteComponentProps<{}> {
   items: {
     date: string
     startTime: string
@@ -14,14 +15,13 @@ interface PerformancePreviewListProps {
     id: string
   }[]
 }
-export const PerformancePreviewList = (props: PerformancePreviewListProps): JSX.Element => {
+export const PerformancePreviewListComponent = (props: PerformancePreviewListProps): JSX.Element => {
   const { items } = props
   return (
     <List>
       {items.map(item => {
         return (
           <List.Item key={item.id}>
-            <Link to={`/performances/${item.id}`}>
             <List.List>
               <PerformancePreview 
                 date={item.date}
@@ -30,10 +30,16 @@ export const PerformancePreviewList = (props: PerformancePreviewListProps): JSX.
                 location={item.location}
               />
             </List.List>
-            </Link>
+            <ViewPreviewButton 
+              onClick={() => { props.history.push(`/performances/${item.id}`)}}
+            />
           </List.Item>
         )
       })}
     </List>
   )
 }
+
+export const PerformancePreviewList = withRouter(
+  PerformancePreviewListComponent
+)
