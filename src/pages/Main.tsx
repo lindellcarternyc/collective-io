@@ -16,7 +16,10 @@ export const Main = ( ): JSX.Element => {
       <Route path="/signup" component={SignUpPage} />
       <Route path="/signin" component={SignInPage} />
       <AuthenticatedRoute path="/performances" component={PerformancesRouteComponent} />
-      <AuthenticatedRoute path="/add-performance" component={AddPerformancePage} />
+      <AuthenticatedRoute 
+        path="/add-performance"
+        component={() => ( <AddPerformancePage /> )}
+      />
     </Switch>
   )
 }
