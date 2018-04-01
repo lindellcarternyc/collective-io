@@ -6,7 +6,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { StoreState } from '../../redux/state'
 import { signOut } from '../../redux/auth/actions'
 
-import { NavigationComponent } from './NavigationComponent'
+import { NavigationComponent } from './navigation.component'
 import { User } from '../../constants/user'
 
 interface StateProps {

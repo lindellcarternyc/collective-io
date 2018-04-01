@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import { HomePage } from './HomePage'
+import { HomePage } from './home-page'
 import { SignUpPage } from './user/SignUpPage'
-import { SignInPage } from './user/SignInPage'
+import { SignInPage } from './sign-in-page'
 
-import { AuthenticatedRoute } from '../components/routes/AuthenticatedRoute'
+import { AuthenticatedRoute } from '../components/authenticated-route'
 import { PerformancesRouteComponent } from './performances/performances-routes'
 import { AddPerformancePage } from './performances/add-performance-page'
 

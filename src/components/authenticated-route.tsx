@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { StoreState } from '../../redux/state'
+import { StoreState } from '../redux/state'
 
 interface AuthenticatedRouteProps {
   isAuthenticated: boolean

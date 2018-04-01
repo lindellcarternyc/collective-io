@@ -2,7 +2,7 @@ import * as React from 'react'
 import './App.css'
 
 import { Navigation } from './components/navigation'
-import { Main } from './pages/Main'
+import { Main } from './pages/main'
 
 class App extends React.Component {
   render() {

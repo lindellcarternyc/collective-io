@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { Redirect } from 'react-router-dom'
 
-import { StoreState } from '../../redux/state'
-import { signIn } from '../../redux/auth/actions'
+import { StoreState } from '../redux/state'
+import { signIn } from '../redux/auth/actions'
 
-import { Layout } from '../../components/Layout'
-import { SignInForm } from '../../components/user/SignInForm'
+import { Layout } from '../components/layout'
+import { SignInForm } from '../components/sign-in-form'
 
-import { UserType } from '../../constants/user'
+import { UserType } from '../constants/user'
 
 interface SignInPageProps {
   signin: (email: string, password: string) => void

@@ -2,9 +2,9 @@ import * as React from 'react'
 
 import { Menu } from 'semantic-ui-react'
 
-import { NavigationLinks } from './Link'
-import { UserButton } from './UserButton'
-import { SignOutButton } from './SignOutButton'
+import { NavigationLinks } from './link'
+import { UserButton } from './user-button'
+import { SignOutButton } from './sign-out-button'
 
 import { makeLinks } from './utils'
 import { User } from '../../constants/user'

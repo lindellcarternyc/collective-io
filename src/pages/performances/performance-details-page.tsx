@@ -52,8 +52,8 @@ import { PerformanceType } from '../../constants/performance'
 import { mapUserIdsToSingerObjects } from './utils'
 
 // Components
-import { Layout } from '../../components/Layout'
-import { PerformanceDetails } from '../../components/performance/Details'
+import { Layout } from '../../components/layout'
+import { PerformanceDetails } from '../../components/performance/details'
 
 interface PerformanceDetailsComponentProps extends 
   StateProps, DispatchProps, RouteComponentProps<RouteProps> { }
