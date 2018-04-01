@@ -7,7 +7,7 @@ import { addPerformance } from '../../redux/performances/actions'
 
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-import { Layout } from '../../components/Layout'
+import { Layout } from '../../components/layout'
 import { AddPerformanceForm, AddPerformanceFormData } from '../../components/add-performance/form'
 
 interface AddPerformancePageComponentProps extends RouteComponentProps<{}> {

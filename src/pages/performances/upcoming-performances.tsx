@@ -2,8 +2,8 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { StoreState } from '../../redux/state'
 
-import { Layout } from '../../components/Layout'
-import { PerformancePreviewList } from '../../components/performance/PreviewList'
+import { Layout } from '../../components/layout'
+import { PerformancePreviewList } from '../../components/performance/preview-list'
 
 import { PerformanceType } from '../../constants/performance'
 interface UpcomingPerformancesProps {
